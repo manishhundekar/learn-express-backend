@@ -1,7 +1,7 @@
 const mysql = require("mysql")
 
 const connection = mysql.createConnection({
-    host: '192.168.29.1',
+    host: 'localhost',
     user: 'root',
     password: "Root@2022", //my-secret-pw
     database: "users"
