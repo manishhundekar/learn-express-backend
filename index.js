@@ -12,7 +12,7 @@ var corsOptions = {
    /* origin: 'https://vbpharma.keoch.in', */
    methods: "GET, PUT, POST, DELETE"
 }
-app.use(cors(corsOptions));
+app.use(cors());
 
 //Homepage
 app.get('/', function(req, res){

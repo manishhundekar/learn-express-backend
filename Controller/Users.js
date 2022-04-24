@@ -4,7 +4,7 @@ var queryData = require("../dBConfig/queryData")
 
 //All Members
 router.get('/', function(req, res){
-    queryData("SELECT * FROM USER WHERE STATUS=1 ORDER BY ID", [], res, function(result){
+    queryData("SELECT * FROM USERS WHERE STATUS=1 ORDER BY ID", [], res, function(result){
         if(result.length == 0){
             res.status(404)
         }
@@ -18,7 +18,7 @@ router.get('/', function(req, res){
 // Delete Product
 router.delete('/delete', function(req, res){
     //console.log("4")
-    queryData("UPDATE USER SET STATUS='0' where ID = ? ", [req.body.id], res, 
+    queryData("UPDATE USERS SET STATUS='0' where ID = ? ", [req.body.id], res, 
     function(result){
         res.status(200)
         res.end()
@@ -28,7 +28,7 @@ router.delete('/delete', function(req, res){
 //Edit Doctor
   router.post('/edit', function(req, res){ 
     //console.log("3")
-    queryData("UPDATE USER SET name = ?, phone_no = ?, type = ?, prepared_doc_sign = ? where id = ?" , 
+    queryData("UPDATE USERS SET name = ?, phone_no = ?, type = ?, prepared_doc_sign = ? where id = ?" , 
                 [
                     req.body.name,
                     req.body.phone_no,
@@ -49,12 +49,12 @@ router.delete('/delete', function(req, res){
 
  //Add Doctor
  router.post('/add', function(req, res){ 
-     console.log(req)
-    queryData("INSERT INTO USER(firstName,lastName,email) values(?,?,?)" , 
+     console.log(req.body.user.firstName)
+    queryData("INSERT INTO USERS(firstName,lastName,email) values(?,?,?)" , 
                 [
-                    req.body.firstName,
-                    req.body.lastName,
-                    req.body.email
+                    req.body.user.firstName,
+                    req.body.user.lastName,
+                    req.body.user.email
                 ], 
                 res,
                 function(result){
