@@ -4,48 +4,49 @@ var queryData = require("../dBConfig/queryData")
 
 //All Members
 router.get('/', function(req, res){
-    queryData("SELECT * FROM USERS WHERE STATUS=1 ORDER BY ID", [], res, function(result){
+    queryData("SELECT * FROM USERS ORDER BY ID", [], res, function(result){
         if(result.length == 0){
             res.status(404)
         }
         else{
+            console.log("Data Fetch Successfull")
             res.status(200).json(result)
         }
         res.end()
     })
 });
 
-// Delete Product
-router.delete('/delete', function(req, res){
-    //console.log("4")
-    queryData("UPDATE USERS SET STATUS='0' where ID = ? ", [req.body.id], res, 
-    function(result){
-        res.status(200)
-        res.end()
-    })
-});
+// // Delete Product
+// router.delete('/delete', function(req, res){
+//     //console.log("4")
+//     queryData("UPDATE USERS SET STATUS='0' where ID = ? ", [req.body.id], res, 
+//     function(result){
+//         res.status(200)
+//         res.end()
+//     })
+// });
 
 //Edit Doctor
-  router.post('/edit', function(req, res){ 
-    //console.log("3")
-    queryData("UPDATE USERS SET name = ?, phone_no = ?, type = ?, prepared_doc_sign = ? where id = ?" , 
-                [
-                    req.body.name,
-                    req.body.phone_no,
-                    req.body.type,
-                    req.body.prepared_doc_sign,
-                    req.body.id
-                ], 
-                res,
-                function(result){
-                        console.log(req.body)
-                        res.status(200).json({
-                            status : 200,
-                            message : "Doctor Edited Successfully"
-                    })
-        res.end()
-    })
- });
+//   router.post('/edit', function(req, res){ 
+//     //console.log("3")
+//     queryData("UPDATE USERS SET name = ?, phone_no = ?, type = ?, prepared_doc_sign = ? where id = ?" , 
+//                 [
+//                     req.body.name,
+//                     req.body.phone_no,
+//                     req.body.type,
+//                     req.body.prepared_doc_sign,
+//                     req.body.id
+//                 ], 
+//                 res,
+//                 function(result){
+//                         console.log(req.body)
+//                         res.status(200).json({
+//                             status : 200,
+//                             message : "Doctor Edited Successfully"
+//                     })
+//         res.end()
+//     })
+//  });
 
  //Add Doctor
  router.post('/add', function(req, res){ 
